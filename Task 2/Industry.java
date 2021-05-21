@@ -5,7 +5,7 @@ interface Car
     int seats=4;
     int doors=2;
     public void car_raw_materials(int car);
-    public int calculate_car();
+    public int calculate_car(int tyres,int seats,int doors);
 }
 interface Bus
 {
@@ -13,7 +13,7 @@ interface Bus
     int seats=10;
     int doors=2;
     public void bus_raw_materials(int bus);
-    public int calculate_bus();
+    public int calculate_bus(int tyres,int seats,int doors);
 }
 interface Bike
 {
@@ -21,7 +21,7 @@ interface Bike
     int seats=1;
     int doors=0;
     public void bike_raw_materials(int bike);
-    public int calculate_bike();
+    public int calculate_bike(int tyres,int seats,int doors);
 }
 class Vehicle implements Car,Bus,Bike
 {
@@ -64,54 +64,64 @@ class Vehicle implements Car,Bus,Bike
         bike_raw_materials(bike);
         System.out.println("Required Parts:\n"+tot_tyres+" tyres "+tot_seats+" seats "+tot_doors+" doors");
     }
-    public int calculate_car()
+    public int calculate_car(int tyres,int seats,int doors)
     {  
         int b=0;
         while((tyres-Car.tyres)>=0 &&(seats-Car.seats) >=0 &&(doors-Car.doors)>=0 )
         {
             b+=1;
-            this.tyres-=Car.tyres;
-            this.seats-=Car.seats;
-            this.doors-=Car.doors;
+            tyres-=Car.tyres;
+            seats-=Car.seats;
+            doors-=Car.doors;
             
         }
-        return b;
+        System.out.println("Cars:" +b);
+        System.out.println("Remaining Parts:\nDoors: "+doors+"\nSeats: "+seats+"\nTyres: "+tyres);
+        return doors+seats+tyres;
     } 
-    public int calculate_bus()
+    public int calculate_bus(int tyres,int seats,int doors)
     {    int a=0;
         while((tyres-Bus.tyres)>=0 && (seats-Bus.seats) >=0 &&(doors-Bus.doors)>=0 )
         {
             a+=1;
-            this.tyres-=Bus.tyres;
-            this.seats-=Bus.seats;
-            this.doors-=Bus.doors;
+            tyres-=Bus.tyres;
+            seats-=Bus.seats;
+            doors-=Bus.doors;
             
         }
-        return a;
+        System.out.println("Buses: "+a);
+        System.out.println("Remaining Parts:\nDoors: "+doors+"\nSeats: "+seats+"\nTyres: "+tyres);
+        return doors+seats+tyres;
         
     }
-    public int calculate_bike()
+    public int calculate_bike(int tyres,int seats,int doors)
     {   
         int c=0;
 
         while((tyres-Bike.tyres)>=0 &&(seats-Bike.seats) >= 0 )
         {
             c+=1;
-            this.tyres-=Bike.tyres;
-            this.seats-=Bike.seats;
-            this.doors-=Bike.doors;
+            tyres-=Bike.tyres;
+            seats-=Bike.seats;
+            doors-=Bike.doors;
             
         }
-        
-        return c;
+        System.out.println("Bikes: "+c);
+        System.out.println("Remaining Parts:\nDoors: "+doors+"\nSeats: "+seats+"\nTyres: "+tyres);
+        return doors+seats+tyres;
     }
     public void calculate_Vehicles()
     {
-        a=calculate_bus();
-        b=calculate_car();
-        c=calculate_bike();
-        System.out.println("Buses: "+a+"\nCars: "+b+"\nBikes: "+c);
-        System.out.println("Remaining Parts:\nDoors: "+doors+"\nSeats: "+seats+"\nTyres: "+tyres);
+        a=calculate_bus(tyres,seats,doors); 
+        b=calculate_car(tyres,seats,doors);
+        c=calculate_bike(tyres,seats,doors);
+        if(a<b && a<c)
+        System.out.println("Bus is the Optimal Choice");
+        else if(b<c)
+        System.out.println("Car is the Optimal Choice");
+        else
+        System.out.println("Bike is the Optimal Choice");
+        
         
     }
     
