@@ -7,13 +7,17 @@ class Ticket
     String passenger_name;
     static int[] seats1 = new int[8];
     static int[] seats2 = new int[8];
+    static int available_seat1=8;
+    static int available_seat2=8;
+    static HashMap<Integer,Object> p=new HashMap<Integer,Object>();
+    static HashMap<String,Object> t=new HashMap<String,Object>(); 
+    static HashMap<Integer,Integer> s=new HashMap<Integer,Integer>(); 
     Ticket()
     {
         for (int i = 0; i < 8; i++) 
         {
             seats1[i] = 0;
             seats2[i] = 0;
-        
         }
             
     }
@@ -23,6 +27,9 @@ class Ticket
         this.destination=destination;
         this.no_of_passengers=no_of_passengers;
         this.passenger_name=passenger_name;
+        t.put("source",source);
+        t.put("destination",destination);
+        t.put("passenger_name",passenger_name);
         this.PNR=generate_PNR();
     }
     int generate_PNR()
@@ -36,7 +43,8 @@ class Ticket
     }
 }
 class TicketBooking extends Ticket
-{   
+{   ArrayList<Object> t1=new ArrayList<Object>( Arrays.asList("A","B","C","D","E"));
+    ArrayList<String> t2=new ArrayList<String>( Arrays.asList("X","Y","Z"));
     TicketBooking(String source,String destination,int no_of_passengers,String passenger_name)
     {
         super(source,destination,no_of_passengers,passenger_name);
@@ -65,13 +73,62 @@ class TicketBooking extends Ticket
         }
         return -1;
     }
+    void bookticket()
+    {   int a,b;
+        if(t1.contains(source)&&t1.contains(destination))
+    {
+        a=bookTrain1();
+        if(a==-1)
+        {
+            System.out.println("No seats Available!!");
+        }
+        else{
+            s.put(1,a);
+            t.put("train",s);
+            p.put(PNR,t);
+            // System.out.println("Train 1\nSeat:"+a);
+        }
+    }
+    else if(t2.contains(source)&&t2.contains(destination))
+    {
+        a=bookTrain2();
+        if(a==-1)
+        {
+            System.out.println("No seats Available!!");
+        }
+        else{
+            s.put(2,a);
+            t.put("train",s);
+            p.put(PNR,t);
+            // System.out.println("Train 2\nSeat:"+a);
+        }
+    }
+    else
+    {
+        a=bookTrain1();
+        b=bookTrain2();
+        if(a==-1 || b==-1)
+        {
+            System.out.println("No seats Available!!");
+        }
+        else
+        {
+            s.put(1,a);
+            s.put(2,b);
+            t.put("train",s);
+            p.put(PNR,t);
+            // System.out.println("Train 1\nSeat:"+a);
+            // System.out.println("Train 2\nSeat:"+b);
+        }
+    }
+    System.out.println(p);
+    }
+   
 }
 class TrainBookingSystem
 {
     public static void main(String args[])
     {
-    ArrayList<String> t1=new ArrayList<String>( Arrays.asList("A","B","C","D","E"));
-    ArrayList<String> t2=new ArrayList<String>( Arrays.asList("X","Y","Z"));
     String source,destination;
     int PNR;
     int a,b;
@@ -86,41 +143,6 @@ class TrainBookingSystem
     passenger_name=sc.next();
     TicketBooking t=new TicketBooking(source,destination,1,passenger_name);
     t.display();
-    if(t1.contains(source)&&t1.contains(destination))
-    {
-        a=t.bookTrain1();
-        if(a==-1)
-        {
-            System.out.println("No seats Available!!");
-        }
-        else{
-            System.out.println("Train 1\nSeat:"+a);
-        }
-    }
-    else if(t2.contains(source)&&t2.contains(destination))
-    {
-        a=t.bookTrain2();
-        if(a==-1)
-        {
-            System.out.println("No seats Available!!");
-        }
-        else{
-            System.out.println("Train 2\nSeat:"+a);
-        }
-    }
-    else
-    {
-        a=t.bookTrain1();
-        b=t.bookTrain2();
-        if(a==-1 || b==-1)
-        {
-            System.out.println("No seats Available!!");
-        }
-        else
-        {
-            System.out.println("Train 1\nSeat:"+a);
-            System.out.println("Train 2\nSeat:"+b);
-        }
-    }
+    t.bookticket();
     }
 }
