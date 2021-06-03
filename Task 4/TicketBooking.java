@@ -2,11 +2,12 @@ import java.util.*;
 class TicketBooking extends Ticket
 {   ArrayList<Object> t1=new ArrayList<Object>( Arrays.asList("A","B","C","D","E"));
     ArrayList<String> t2=new ArrayList<String>( Arrays.asList("X","Y","C"));
+    Withheld w;
     TicketBooking(String source,String destination,int no_of_passengers)
     {
         super.source=source;
         super.destination=destination;
-        super.no_of_passengers=no_of_passengers;
+        super.no_of_passengers=no_of_passengers;    
     }
     TicketBooking()
     {}
@@ -36,16 +37,18 @@ class TicketBooking extends Ticket
         return -1;
     }
     void bookticket(String passengers[])
-    {
+    {   
+        // System.out.println(source+" "+destination+" sd");
         boolean a,b,c,d;
         int s1,s2;
         a=t1.contains(source);
         b=t2.contains(source);
         c=t1.contains(destination);
         d=t2.contains(destination);
+        
         if(b && c && destination.charAt(0)!='C')
         {
-            if(no_of_passengers>Train.available_seat1 || no_of_passengers>Train.available_seat2)
+            if(passengers.length>Train.available_seat1 || passengers.length>Train.available_seat2)
             {
                 System.out.println("Sorry!!! Tickets not available");
                 System.out.println("Only "+Train.available_seat1+" tickets available in Train 1");
@@ -76,10 +79,20 @@ class TicketBooking extends Ticket
         }
         else if(a&&c)
         {
-            if(no_of_passengers>Train.available_seat1)
+            if(passengers.length>Train.available_seat1)
             {
+                if(Train.w1<=0)
+                {
                 System.out.println("Sorry!!! Tickets not available");
                 System.out.println("Only "+Train.available_seat1+" tickets available in Train 1"); 
+                }
+                else
+                {
+                super.PNR=generate_PNR();
+                w=new Withheld(PNR,passengers,no_of_passengers,source,destination);
+                Train.withheld1.add(w);
+                // System.out.println(no_of_passengers);
+                }
             }
             else
             {
@@ -99,11 +112,21 @@ class TicketBooking extends Ticket
         }
         else if(b&&d)
         {
-            if(no_of_passengers>Train.available_seat2)
+            if(passengers.length>Train.available_seat2)
             {
+                if(Train.w2<=0)
+                {
                 System.out.println("Sorry!!! Tickets not available");
-                System.out.println("Only "+Train.available_seat2+" tickets available in Train 2");
-            } 
+                System.out.println("Only "+Train.available_seat2+" tickets available in Train 1"); 
+                }
+                else
+                {
+                super.PNR=generate_PNR();
+                w=new Withheld(PNR,passengers,no_of_passengers,source,destination);
+                Train.withheld2.add(w);
+                // System.out.println(no_of_passengers);
+                }
+            }
             else
             {
                 super.PNR=generate_PNR();

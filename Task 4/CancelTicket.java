@@ -1,5 +1,5 @@
-import java.util.*;
 class CancelTicket {
+    TicketBooking t=new TicketBooking();
     void cancel(int pnr)
     {   int f=0,i=0;
         // System.out.println(Train.train1.size()+" "+Train.train1);
@@ -29,12 +29,39 @@ class CancelTicket {
             }
             i+=1;
         }
+        
         if(f==0)
         {
             System.out.println("Invalid!!! Check PNR Number");
         }
         else{
             System.out.println("Ticket Cancelled Successfully");
+        }
+        book_withheld_tickets();
+    }
+    void book_withheld_tickets()
+    {
+        for(int i=0;i<Train.withheld1.size();i++)
+        {
+           String a[]=new String[Train.withheld1.get(i).passengers.size()];
+            for(int k=0;k<Train.withheld1.get(i).passengers.size();k++)
+            {
+                a[k]=Train.withheld1.get(i).passengers.get(k);
+                System.out.println(a[k]);
+            }
+            t=new TicketBooking(Train.withheld1.get(i).source,Train.withheld1.get(i).destination,Train.withheld1.get(i).no_of_passengers);
+            t.bookticket(a);
+        }
+        for(int i=0;i<Train.withheld2.size();i++)
+        {
+           String a[]=new String[Train.withheld2.get(i).passengers.size()];
+            for(int k=0;k<Train.withheld2.get(i).passengers.size();k++)
+            {
+                a[k]=Train.withheld2.get(i).passengers.get(k);
+                System.out.println(a[k]);
+            }
+            t=new TicketBooking(Train.withheld2.get(i).source,Train.withheld2.get(i).destination,Train.withheld2.get(i).no_of_passengers);
+            t.bookticket(a);
         }
     }
 
