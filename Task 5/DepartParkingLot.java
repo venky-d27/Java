@@ -20,6 +20,7 @@ public class DepartParkingLot
                 System.out.println("Thanks For Coming!!!\n Your Bill\n"+ParkingLot.parked_vehicles.get(i).toString());
                 deallocate_slot(ParkingLot.parked_vehicles.get(i).floor_no,ParkingLot.parked_vehicles.get(i).slot_no);
                 ParkingLot.parked_vehicles.get(i).alive=0;
+                ParkingLot.parked_vehicles.get(i).reservation_status=0;
                 // System.out.print(ParkingLot.parking[ParkingLot.parked_vehicles.get(i).floor_no][ParkingLot.parked_vehicles.get(i).slot_no]);
                 return 0;
             }   
