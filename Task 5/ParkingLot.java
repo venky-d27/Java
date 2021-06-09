@@ -9,15 +9,8 @@ public class ParkingLot
         this.slots=slots;
         this.floors=floors;
         parking=new int[floors][slots];
-        for(int i=0;i<floors;i++)
-        {
-            for(int j=0;j<slots;j++)
-            {
-                parking[i][j]=0;
-            }
-        }
-        car_slots=(int)(0.4*slots);
-        bus_slots=(int)(0.4*slots);
+        car_slots=(int)(Car.slots_required*slots);
+        bus_slots=(int)(Bus.slots_required*slots);
         bike_slots=slots-(car_slots+bus_slots);
     }
     static ArrayList<Vehicle> parked_vehicles=new ArrayList<Vehicle>();

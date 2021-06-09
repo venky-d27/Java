@@ -1,14 +1,18 @@
 public class Vehicle implements Bike,Bus,Car
 {
-    String licence_plate_no;
+    String vehicle_plate_no;
     String  vehicle_type;
-    int floor_no,slot_no;
+    int floor_no,slot_no,reservation_status;
+    double parking_fee,reserve_fee;
+    String in_time,out_time;
+    int alive;
     Vehicle(){}
-    Vehicle(String licence_plate_no,int type,int floor_no,int slot_no)
+    Vehicle(String vehicle_plate_no,int type,int floor_no,int slot_no)
     {
-        this.licence_plate_no=licence_plate_no;
+        this.vehicle_plate_no=vehicle_plate_no;
         this.floor_no=floor_no;
         this.slot_no=slot_no;
+        this.alive=1;
         if(type==1)
         {
             this.vehicle_type=Bike.vehicle_type;
@@ -22,11 +26,10 @@ public class Vehicle implements Bike,Bus,Car
             this.vehicle_type=Car.vehicle_type;
         }
     }
+    
     @Override
     public String toString()
     {
-         return "\nLicence Plate No: "+licence_plate_no+"\nVehicle Type"+vehicle_type+"\nFloor No: "+floor_no+"\nSlot No: "+slot_no;
+         return "\nLicence Plate No: "+vehicle_plate_no+"\nVehicle Type: "+vehicle_type+"\nFloor No: "+floor_no+"\nSlot No: "+slot_no+"\nIn-time: "+in_time+"\nOut-time: "+out_time+"\nParking fee: "+parking_fee;
     }
-
-
 }
