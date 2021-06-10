@@ -15,7 +15,7 @@ public class FeeCollection
             long milliSeconds= Math.abs(date2.getTime() - date1.getTime());
             long hours= (milliSeconds / (60 * 60 * 1000))% 24;
             long minutes = (milliSeconds / (60 * 1000)) % 60;
-            long seconds= (milliSeconds / 1000) % 60;
+            // long seconds= (milliSeconds / 1000) % 60;
             if(minutes>0)
             {
                 hours+=1;

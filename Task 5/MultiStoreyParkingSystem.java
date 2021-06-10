@@ -17,7 +17,7 @@ public class MultiStoreyParkingSystem
         ParkingLot p=new ParkingLot(slots, floors);
         do
         {
-            System.out.println("Choose the service you need:\n1.Park the Vehicle\n2.Leave the Parking Lot\n3. Reserve Parking Slot\n4. Dereserve the Reserved slot\n5.Show Allocation Chart\n6.Exit");
+            System.out.println("Choose the service you need:\n1.Park the Vehicle\n2.Leave the Parking Lot\n3.Reserve Parking Slot\n4.Dereserve the Reserved slot\n5.Show Allocation Chart\n6.Summary Report\n7.Exit");
             ch=sc.nextInt();
             switch (ch) 
             {
@@ -36,18 +36,25 @@ public class MultiStoreyParkingSystem
                     vehicle_plate_no=sc.next();
                     System.out.println("Enter the Departing Time(HH:MM:SS): ");
                     out_time=sc.next();
+                    System.out.println("Want to apply coupon?\n1.Yes\n2.No");
+                    int ch1=sc.nextInt();
                     DepartParkingLot d=new DepartParkingLot();
-                    int a=d.depart_vehicle(vehicle_plate_no, out_time);
-                    if(a==-1)
+                    if(ch1==1)
                     {
-                        System.out.println("No Vehicle With given Plate Number!!!\nKindly Check!!!");
+                        System.out.println("Enter your Coupon Code: ");
+                        String couponcode=sc.next();
+                        d.depart_vehicle(vehicle_plate_no, out_time,couponcode);
+                    }
+                    else
+                    {
+                        d.depart_vehicle(vehicle_plate_no, out_time,"-1");
                     }
                     break;
                 case 3:
+                    System.out.println("Enter Vehicle Type:\n1.Bike\n2.Bus\n3.Car\n");
+                    vehicle_type=sc.nextInt();    
                     System.out.println("Enter Vehicle's Plate Number: ");
                     vehicle_plate_no=sc.next();
-                    System.out.println("Enter Vehicle Type:\n1.Bike\n2.Bus\n3.Car\n");
-                    vehicle_type=sc.nextInt();
                     ParkingReservation pr = new ParkingReservation();
                     pr.reserve_slot(vehicle_plate_no, vehicle_type);
 
@@ -63,12 +70,18 @@ public class MultiStoreyParkingSystem
                     disp.allocation_chart();
                     break;
                 case 6:
+                    Summary s=new Summary();
+                    System.out.println("Enter Vehicle Type for which Summary needed:\n1.Bike\n2.Bus\n3.Car\n");
+                    vehicle_type=sc.nextInt();
+                    s.summary(vehicle_type);
+                    break;
+                case 7:
                     break;
                 default:
                     System.out.println("Wrong Choice!!!");
                     break;
             }
-        }while(ch!=6);
+        }while(ch!=7);
         
 
     }

@@ -1,6 +1,7 @@
 public class ParkingLotAllotment extends ParkingLot
 {
     ParkingLotAllotment(){}
+    CouponSystem cs=new CouponSystem();
     static int[] allot_slot(int type)
     {   
         int a[]=new int[]{-1,-1};
@@ -67,7 +68,9 @@ public class ParkingLotAllotment extends ParkingLot
             v=new Vehicle(licence_plate_no,type,a[0],a[1]);
             parked_vehicles.add(v);
             ParkingLot.parked_vehicles.get(ParkingLot.parked_vehicles.size()-1).in_time=in_time;
-            System.out.println("Parking Slot Alllocated!!!\nFloor No: "+ParkingLot.parked_vehicles.get(ParkingLot.parked_vehicles.size()-1).floor_no+"\nSlot No: "+ParkingLot.parked_vehicles.get(ParkingLot.parked_vehicles.size()-1).slot_no);
+            ParkingLot.parked_vehicles.get(ParkingLot.parked_vehicles.size()-1).couponcode=cs.generate_couponcode();
+            System.out.println("Parking Slot Alllocated!!!\nFloor No: "+ParkingLot.parked_vehicles.get(ParkingLot.parked_vehicles.size()-1).floor_no+"\nSlot No: "+ParkingLot.parked_vehicles.get(ParkingLot.parked_vehicles.size()-1).slot_no+"\nCoupon code: "+ParkingLot.parked_vehicles.get(ParkingLot.parked_vehicles.size()-1).couponcode);
+            
         }
     }
 }
