@@ -14,4 +14,5 @@ public class ParkingLot
         bike_slots=slots-(car_slots+bus_slots);
     }
     static ArrayList<Vehicle> parked_vehicles=new ArrayList<Vehicle>();
+    static ArrayList<Vehicle> reserved_vehicles=new ArrayList<Vehicle>();
 }

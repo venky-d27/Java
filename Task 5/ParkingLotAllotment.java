@@ -55,22 +55,35 @@ public class ParkingLotAllotment extends ParkingLot
         }
         return a;
     }
-    void parking_allotment(String licence_plate_no,int type,String in_time)
+    void parking_allotment(String vehicle_plate_no,int type,String in_time)
     {
-        int a[]=allot_slot(type);
         Vehicle v;
-        if(a[0]==-1 || a[1]==-1)
+        int f=0;
+        ParkingReservation pr=new ParkingReservation();
+        if(pr.check_reserved(vehicle_plate_no))
         {
-            System.out.println("Sorry no parking slots Available!!!");
+            f=1;
         }
         else
         {
-            v=new Vehicle(licence_plate_no,type,a[0],a[1]);
-            parked_vehicles.add(v);
+            int a[]=allot_slot(type);
+            if(a[0]==-1 || a[1]==-1)
+            {
+                System.out.println("Sorry no parking slots Available!!!");
+            }
+            else
+            {
+                v=new Vehicle(vehicle_plate_no,type,a[0],a[1]);
+                parked_vehicles.add(v);
+                f=1;
+                
+            }
+        }
+        if(f==1)
+        {
             ParkingLot.parked_vehicles.get(ParkingLot.parked_vehicles.size()-1).in_time=in_time;
             ParkingLot.parked_vehicles.get(ParkingLot.parked_vehicles.size()-1).couponcode=cs.generate_couponcode();
             System.out.println("Parking Slot Alllocated!!!\nFloor No: "+ParkingLot.parked_vehicles.get(ParkingLot.parked_vehicles.size()-1).floor_no+"\nSlot No: "+ParkingLot.parked_vehicles.get(ParkingLot.parked_vehicles.size()-1).slot_no+"\nCoupon code: "+ParkingLot.parked_vehicles.get(ParkingLot.parked_vehicles.size()-1).couponcode);
-            
         }
     }
 }
