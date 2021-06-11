@@ -28,8 +28,7 @@ public class MultiStoreyParkingSystem
                     vehicle_plate_no=sc.next();
                     System.out.println("Enter Parking time(HH:MM:SS): ");
                     in_time=sc.next();
-                    ParkingLotAllotment pla=new ParkingLotAllotment();
-                    pla.parking_allotment(vehicle_plate_no, vehicle_type,in_time);
+                    p.parking_allotment(vehicle_plate_no, vehicle_type,in_time);
                     break;
                 case 2:
                     System.out.println("Enter the Vehicle's Plate Number to be departed: ");
@@ -38,16 +37,15 @@ public class MultiStoreyParkingSystem
                     out_time=sc.next();
                     System.out.println("Want to apply coupon?\n1.Yes\n2.No");
                     int ch1=sc.nextInt();
-                    DepartParkingLot d=new DepartParkingLot();
                     if(ch1==1)
                     {
                         System.out.println("Enter your Coupon Code: ");
                         String couponcode=sc.next();
-                        d.depart_vehicle(vehicle_plate_no, out_time,couponcode);
+                        p.depart_vehicle(vehicle_plate_no, out_time,couponcode);
                     }
                     else
                     {
-                        d.depart_vehicle(vehicle_plate_no, out_time,"-1");
+                        p.depart_vehicle(vehicle_plate_no, out_time,"-1");
                     }
                     break;
                 case 3:
@@ -55,22 +53,20 @@ public class MultiStoreyParkingSystem
                     vehicle_type=sc.nextInt();    
                     System.out.println("Enter Vehicle's Plate Number: ");
                     vehicle_plate_no=sc.next();
-                    ParkingReservation pr = new ParkingReservation();
-                    pr.reserve_slot(vehicle_plate_no, vehicle_type);
+                    p.reserve_slot(vehicle_plate_no, vehicle_type);
 
                     break;
                 case 4:
                     System.out.println("Enter Vehicle's Plate Number: ");
                     vehicle_plate_no=sc.next();
-                    ParkingReservation prd = new ParkingReservation();
-                    prd.dereserve(vehicle_plate_no);
+                    p.dereserve(vehicle_plate_no);
                     break;
                 case 5:
-                    Display disp=new Display();
+                    DisplayBoard disp=new DisplayBoard();
                     disp.allocation_chart();
                     break;
                 case 6:
-                    Summary s=new Summary();
+                    SummaryReport s=new SummaryReport();
                     System.out.println("Enter Vehicle Type for which Summary needed:\n1.Bike\n2.Bus\n3.Car\n");
                     vehicle_type=sc.nextInt();
                     s.summary(vehicle_type);

@@ -1,4 +1,4 @@
-public class Summary 
+public class SummaryReport 
 {
     void car_summary()
     {   int c=0;

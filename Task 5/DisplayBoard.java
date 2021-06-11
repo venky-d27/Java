@@ -1,6 +1,6 @@
-public class Display extends ParkingLot 
+public class DisplayBoard extends ParkingLot 
 {
-    Display(){}
+    DisplayBoard(){}
     void allocation_chart()
     {
         for(int i=0;i<floors;i++)
