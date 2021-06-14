@@ -1,10 +1,10 @@
 import java.util.*;
 import java.text.*;
-public class Entrance 
+public class BillCounter 
 {
     double first_hour_discount=0.5;
     double rest_hour_discount=0.1;
-    Entrance(){}
+    BillCounter(){}
     long calculate_time_period(String in_time,String out_time)
     {
         SimpleDateFormat simpleDateFormat= new SimpleDateFormat("HH:mm:ss");

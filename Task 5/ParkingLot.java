@@ -173,7 +173,7 @@ public class ParkingLot
         {
             if((ParkingLot.parked_vehicles.get(i).vehicle_plate_no.equals(vehicle_plate_no)) && ParkingLot.parked_vehicles.get(i).alive==1)
             {
-                Entrance f=new Entrance();
+                BillCounter f=new BillCounter();
                 ParkingLot.parked_vehicles.get(i).out_time=out_time;
                 if(!couponcode.equals("-1"))
                 {
