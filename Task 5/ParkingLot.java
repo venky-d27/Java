@@ -201,28 +201,3 @@ public class ParkingLot
             }
     }
 }
-/* 
-Sir Made the Changes
-Objects & Methods:
-1. Vehicle (implements Bus,Car,Bike)
-2. ParkingLot
-    a. Reserving Slots
-    b. Dereserving Slots
-    c. Allocating Slots
-    d. Deallocating Slots
-3. Coupon
-    a. Generate Coupon
-    b. Apply Coupon
-4. DisplayBoard
-    a. Print Allocation chart
-5. SummaryReport
-    a. Report for Vehicle Type Car
-    b. Report for Vehicle Type Bike
-    c. Report for Vehicle Type Bus
-6. Entrance
-    a.Calculate parking fee
-    b.Calculate Discount
-
-
-
-*/
