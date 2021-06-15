@@ -4,14 +4,17 @@ public class ParkingLot
     int[][] parking;
     int car_slots,bus_slots,bike_slots,slots,floors;
     Coupon cs=new Coupon();
+    Bike bfd=new Bike();
+    Bus b=new Bus();
+    Car c=new Car();
     ParkingLot(){}
     ParkingLot(int slots,int floors)
     {
         this.slots=slots;
         this.floors=floors;
         parking=new int[floors][slots];
-        car_slots=(int)(Car.slots_required*slots);
-        bus_slots=(int)(Bus.slots_required*slots);
+        car_slots=(int)(c.slots_required*slots);
+        bus_slots=(int)(b.slots_required*slots);
         bike_slots=slots-(car_slots+bus_slots);
     }
     ArrayList<Vehicle> parked_vehicles=new ArrayList<Vehicle>();
@@ -40,15 +43,15 @@ public class ParkingLot
             reserved_vehicles.add(v);
             if(type==1)
             {
-                reserved_vehicles.get(reserved_vehicles.size()-1).reserve_fee=Bike.reserve_rate;
+                reserved_vehicles.get(reserved_vehicles.size()-1).reserve_fee=bfd.reserve_rate;
             }
             else if(type==2)
             {
-                reserved_vehicles.get(reserved_vehicles.size()-1).reserve_fee=Bus.reserve_rate;
+                reserved_vehicles.get(reserved_vehicles.size()-1).reserve_fee=b.reserve_rate;
             }
             else
             {
-                reserved_vehicles.get(reserved_vehicles.size()-1).reserve_fee=Car.reserve_rate;
+                reserved_vehicles.get(reserved_vehicles.size()-1).reserve_fee=c.reserve_rate;
             }
             System.out.println("Reserved Successfully\n"+"Reservation Fee: "+reserved_vehicles.get(reserved_vehicles.size()-1).reserve_fee);
             reserved_vehicles.get(reserved_vehicles.size()-1).reservation_status=1;

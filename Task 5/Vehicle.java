@@ -1,4 +1,4 @@
-public class Vehicle implements Bike,Bus,Car
+public class Vehicle 
 {
     String vehicle_plate_no;
     String  vehicle_type;
@@ -16,15 +16,15 @@ public class Vehicle implements Bike,Bus,Car
         this.alive=1;
         if(type==1)
         {
-            this.vehicle_type=Bike.vehicle_type;
+            this.vehicle_type="Bike";
         }
         else if(type==2)
         {
-            this.vehicle_type=Bus.vehicle_type;
+            this.vehicle_type="Bus";
         }
         else
         {
-            this.vehicle_type=Car.vehicle_type;
+            this.vehicle_type="Car";
         }
     }
     

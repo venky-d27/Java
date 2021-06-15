@@ -4,6 +4,9 @@ public class BillCounter
 {
     double first_hour_discount=0.5;
     double rest_hour_discount=0.1;
+    Bike bfd=new Bike();
+    Bus b=new Bus();
+    Car c=new Car();
     BillCounter(){}
     long calculate_time_period(String in_time,String out_time)
     {
@@ -39,15 +42,15 @@ public class BillCounter
             double fee;
             if(type=="Bike" && hours>0)
             {   
-                fee=Bike.first_hour_rate+(hours-1)*Bike.rest_hour_rate;
+                fee=bfd.first_hour_rate+(hours-1)*bfd.rest_hour_rate;
             }
             else if(type=="Bus" && hours>0)
             {
-                fee=Bus.first_hour_rate+(hours-1)*Bus.rest_hour_rate;
+                fee=b.first_hour_rate+(hours-1)*b.rest_hour_rate;
             }
             else if(type=="Car" && hours>0)
             {
-                fee=Car.first_hour_rate+(hours-1)*Car.rest_hour_rate;
+                fee=c.first_hour_rate+(hours-1)*c.rest_hour_rate;
             }
             else
             {
@@ -62,15 +65,15 @@ public class BillCounter
         double discount=0.0;
         if(type=="Bike")
         {
-            discount=Bike.first_hour_rate*first_hour_discount+(hours-1)*Bike.rest_hour_rate*rest_hour_discount;
+            discount=bfd.first_hour_rate*first_hour_discount+(hours-1)*bfd.rest_hour_rate*rest_hour_discount;
         }
         else if(type=="Bus")
         {
-            discount=Bus.first_hour_rate*first_hour_discount+(hours-1)*Bus.rest_hour_rate*rest_hour_discount;
+            discount=b.first_hour_rate*first_hour_discount+(hours-1)*b.rest_hour_rate*rest_hour_discount;
         }
         else
         {
-            discount=Car.first_hour_rate*first_hour_discount+(hours-1)*Car.rest_hour_rate*rest_hour_discount;
+            discount=c.first_hour_rate*first_hour_discount+(hours-1)*c.rest_hour_rate*rest_hour_discount;
         }
         return discount;
     }
