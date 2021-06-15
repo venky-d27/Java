@@ -63,13 +63,12 @@ public class MultiStoreyParkingSystem
                     break;
                 case 5:
                     DisplayBoard disp=new DisplayBoard();
-                    disp.allocation_chart();
+                    disp.allocation_chart(p);
                     break;
                 case 6:
-                    SummaryReport s=new SummaryReport();
                     System.out.println("Enter Vehicle Type for which Summary needed:\n1.Bike\n2.Bus\n3.Car\n");
                     vehicle_type=sc.nextInt();
-                    s.summary(vehicle_type);
+                    p.summary(vehicle_type);
                     break;
                 case 7:
                     break;
